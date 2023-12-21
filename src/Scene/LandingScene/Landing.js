@@ -3,9 +3,12 @@ import BG from "../../Assets/BG.webp";
 import Front from "../../Assets/front.webp";
 import ApeFestHongKong from "../../Assets/ApeFestHongKong.svg";
 import { useEffect, useState, useRef } from "react";
+import Ring from "../../Assets/RingSVG.svg";
+import InnerRing from "../../Assets/RoundSVG.svg";
+
 const LandingScene = () => {
   return (
-    <Box>
+    <Box scrollBehavior={"smooth"}>
       <Initiate />
     </Box>
   );
@@ -16,22 +19,30 @@ const Initiate = () => {
   useEffect(() => {
     const ParallexElement = document.querySelectorAll(".shift");
     const ParallexReverseElement = document.querySelectorAll(".shiftReverse");
+    const ParallexReverseElementTest = document.querySelectorAll(".shiftTest");
 
     console.log(ParallexElement);
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
+      ParallexReverseElementTest.forEach((element) => {
+        element.style.transform = `translateY(calc(${
+          (scrollY * 0.25) / 8
+        }px)) perspective(1200px)`;
+        element.style.transition = `transfrom 830ms ease-in-out`;
+      });
       ParallexElement.forEach((element) => {
-        element.style.transform = `translateY(calc(${scrollY * 1.2}px)) `;
+        element.style.transform = `translateY(${
+          (scrollY * 0.5) / 3
+        }px) perspective(1200px)`;
+        element.style.transition = `transfrom 5000ms ease-in-out`;
       });
       ParallexReverseElement.forEach((element) => {
-        element.style.transform = `translateY(calc(${
-          scrollY * 0.2
-        }px)) scale(1) perspective(1200px)`;
+        element.style.transform = `translateY(-${
+          (scrollY * 0.8) / 8
+        }px) perspective(1200px) scale(${0.65 + scrollY * 0.00009})`;
       });
 
       console.log("Y -> ", scrollY);
-      setYvalue(scrollY);
       // console.log("X -> ", scrollX);
     };
     window.addEventListener("scroll", handleScroll);
@@ -46,24 +57,28 @@ const Initiate = () => {
         height={"unset"}
         aspectRatio={1 / 2}
       >
-        <Box
-          inset={"0px"}
-          className="shift"
-          // height={"100vh"}
+        <ApeFestCircle />
 
-          overflow={"hidden"}
+        <Box
+          className="shift"
+          overflowY={""}
+          // className="shiftTets"
+          inset={"0px"}
+          overflow={"visible"}
           position={"absolute"}
+          height={"200vh"}
         >
           <Img
             src={BG}
             width={"100%"}
-            transform={"scale(1.3)"}
-            // backgroundAttachment={"scroll"}
+            transform={"scale(1.2)"}
+            backgroundAttachment={"scroll"}
             objectPosition={"center center"}
             objectFit={"cover"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
             display={"block"}
+            position={"absolute"}
           />
         </Box>
         <Box
@@ -73,7 +88,7 @@ const Initiate = () => {
           className="shiftReverse"
         >
           <Center justifyContent={"center"} alignItems={"center"}>
-            <Img src={ApeFestHongKong} width={"60%"} height={"50%"} />
+            <Img src={ApeFestHongKong} />
           </Center>
         </Box>
         <Box
@@ -82,13 +97,13 @@ const Initiate = () => {
           justifyContent={"center"}
           alignItems={"center"}
           width={"100%"}
-          className="shift"
+          className="shiftTest"
         >
           <Center>
             <Img
               src={Front}
               position={"relative"}
-              top="550px"
+              top="620px"
               width={"50%"}
               backgroundAttachment={"scroll"}
               objectPosition={"center center"}
@@ -100,18 +115,40 @@ const Initiate = () => {
         </Box>
         <Box
           position={"absolute"}
-          top={"200vh"}
+          top={"190vh"}
           height={"100vh"}
           backgroundColor={"black"}
           w={"100%"}
         ></Box>
-         {/* <Box
+        <Box
           position={"absolute"}
           top={"300vh"}
           height={"100vh"}
           backgroundColor={"white"}
           w={"100%"}
-        ></Box> */}
+        ></Box>
+      </Box>
+    </>
+  );
+};
+
+const ApeFestCircle = () => {
+  return (
+    <>
+      <Box position={"relative"} top={"100px"} left={"100px"}>
+        <Img
+          src={Ring}
+          position={"absolute"}
+          zIndex={1}
+          className="ApeFestRound"
+        />
+        <Img
+          src={InnerRing}
+          position={"absolute"}
+          zIndex={2}
+          top={"20px"}
+          left={"20px"}
+        />
       </Box>
     </>
   );
