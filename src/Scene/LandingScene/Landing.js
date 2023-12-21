@@ -43,8 +43,8 @@ const Initiate = () => {
         overflow={"hidden"}
         top={"-400px"}
         position={"relative"}
-        // height={"unset"}
-        aspectRatio={1/ 10}
+        height={"unset"}
+        aspectRatio={1 / 2}
       >
         <Box
           inset={"0px"}
@@ -57,7 +57,6 @@ const Initiate = () => {
           <Img
             src={BG}
             width={"100%"}
-            position={"sticky"}
             transform={"scale(1.3)"}
             // backgroundAttachment={"scroll"}
             objectPosition={"center center"}
@@ -68,14 +67,12 @@ const Initiate = () => {
           />
         </Box>
         <Box
-          height={"unset"}
+          top={"550px"}
+          width={"100%"}
           position={"absolute"}
-          justifyContent={"center"}
-          alignItems={"center"}
           className="shiftReverse"
-          top={"500px"}
         >
-          <Center>
+          <Center justifyContent={"center"} alignItems={"center"}>
             <Img src={ApeFestHongKong} width={"60%"} height={"50%"} />
           </Center>
         </Box>
@@ -91,7 +88,7 @@ const Initiate = () => {
             <Img
               src={Front}
               position={"relative"}
-              top="500px"
+              top="550px"
               width={"50%"}
               backgroundAttachment={"scroll"}
               objectPosition={"center center"}
@@ -108,6 +105,13 @@ const Initiate = () => {
           backgroundColor={"black"}
           w={"100%"}
         ></Box>
+         {/* <Box
+          position={"absolute"}
+          top={"300vh"}
+          height={"100vh"}
+          backgroundColor={"white"}
+          w={"100%"}
+        ></Box> */}
       </Box>
     </>
   );
