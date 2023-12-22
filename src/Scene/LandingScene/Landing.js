@@ -20,6 +20,8 @@ const Initiate = () => {
     const ParallexElement = document.querySelectorAll(".shift");
     const ParallexReverseElement = document.querySelectorAll(".shiftReverse");
     const ParallexReverseElementTest = document.querySelectorAll(".shiftTest");
+    const ApeFestRound = document.querySelectorAll(".ApeFestRound");
+
 
     console.log(ParallexElement);
     const handleScroll = () => {
@@ -41,6 +43,9 @@ const Initiate = () => {
           (scrollY * 0.8) / 8
         }px) perspective(1200px) scale(${0.65 + scrollY * 0.00009})`;
       });
+      ApeFestRound.forEach(e=>{
+        e.style.transform = `rotateZ(${scrollY*0.05}deg)`
+      })
 
       console.log("Y -> ", scrollY);
       // console.log("X -> ", scrollX);
@@ -50,6 +55,8 @@ const Initiate = () => {
 
   return (
     <>
+      <ApeFestCircle />
+
       <Box
         overflow={"hidden"}
         top={"-400px"}
@@ -57,8 +64,6 @@ const Initiate = () => {
         height={"unset"}
         aspectRatio={1 / 2}
       >
-        <ApeFestCircle />
-
         <Box
           className="shift"
           overflowY={""}
@@ -135,7 +140,7 @@ const Initiate = () => {
 const ApeFestCircle = () => {
   return (
     <>
-      <Box position={"relative"} top={"100px"} left={"100px"}>
+      <Box position={"fixed"} zIndex={"99"} right={"100px"}  width={"135px"} bottom={"170px"}>
         <Img
           src={Ring}
           position={"absolute"}
